@@ -11,3 +11,7 @@ Inherit from this container, place scripts in /etc/startup and/or /etc/run and t
 * /etc/startup -- any executables placed here will be invoked *once* on container startup (each time)
 * /etc/run -- any executables here will be run as a runit service (by coping to the appropriate directory)
 * /var/lib/runonce -- a directory to track what (from /etc/runonce) has already been run
+
+## Hacking
+
+Hack away, run 'make test' to verify things are still working as expected.  Extend test/verify to make sure your changes are working as expected.  Patches welcome, but keep in mind the goal of this container is to be fairly minimal.
