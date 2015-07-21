@@ -1,5 +1,25 @@
 #!/bin/bash
 
+# Run only if it has never been run before in this container
+mkdir -p /var/lib/runonce
 for s in /etc/runonce/*; do
+    base=`basename $s`
+    if [ -x $s -a ! -f /var/lib/runonce/$base ] ; then
+	eval $s && touch /var/lib/runonce/$base
+    fi 
+done
+
+
+# Just run everything in /etc/runonce
+for s in /etc/startup/*; do
     eval $s
+done
+
+# Arrange for everything in /etc/run to run as a runit service
+for s in /etc/run/*; do
+    if [ -x $s ] ; then
+	base=`basename $s`
+	mkdir -p /etc/service/$base
+	ln -s $s /etc/service/$base/run
+    fi
 done

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ -f /root/test-runonce ] ; then
+   echo "WARNING:  runonce should only be run once"
+   exit 1
+else
+   touch /root/test-runonce
+fi

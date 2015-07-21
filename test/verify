@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Purpose:  verify the image does what it needs to
+
+assert() {
+   desc="$1"; shift
+   if eval "$@" ; then
+	echo "$desc...PASS"
+   else
+	echo "$desc...FAIL"
+	problems=$((${problems:-0} + 1))
+   fi
+}
+
+# Give things a chance to start up
+
+assert "Initialization happened" test -f /root/test-runonce
+assert "Startup happened" test -f /root/test-startup
+assert "System is running" test -f /root/test-run
+
+exit $problems
