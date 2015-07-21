@@ -1,0 +1,5 @@
+#!/bin/bash
+
+for s in /etc/runonce/*; do
+    eval $s
+done
