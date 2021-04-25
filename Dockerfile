@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:20.10
 MAINTAINER Dewey Sasser <dewey@sasser.com>
 
 RUN apt-get update
